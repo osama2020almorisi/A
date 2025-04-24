@@ -1,10 +1,12 @@
-/* Header Styles */
+/* الهيدر المعدل */
 .main-header {
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
+    top: 0;
     width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
     z-index: 1000;
+    transition: all 0.3s ease;
 }
 
 .container {
@@ -25,23 +27,19 @@
     cursor: pointer;
 }
 
-@media (max-width: 768px) {
-    .hamburger-menu {
-        display: block;
+/* قائمة الجوال */
+@media (max-width: 992px) {
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        transition: right 0.3s ease;
     }
-
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-        text-align: center;
-    }
-
-    .nav-links.active {
-        display: block;
+    
+    .main-nav.active {
+        right: 0;
     }
 }
 .main-header {

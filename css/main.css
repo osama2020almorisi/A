@@ -1,6 +1,8 @@
 /* الأساسيات */
 @import 'base/reset.css';
 @import 'base/variables.css';
+@import url('base/typography.css');
+
 
 /* المكونات */
 @import 'components/header.css';
@@ -12,6 +14,8 @@
 @import 'pages/services.css';
 @import 'pages/about.css';
 @import 'pages/contact.css';
+@import url('layouts/grid.css');
+
 
 /* الأنماط العامة */
 body {
