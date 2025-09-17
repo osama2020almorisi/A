@@ -24,6 +24,9 @@
             --text-dimmed: #e0e0e0;
             --shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             --gradient-bg: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            --transition: all 0.3s ease;
+            --card-radius: 24px;
+            --card-padding: 25px;
         }
         
         * {
@@ -38,9 +41,10 @@
             color: var(--text-light);
             min-height: 100vh;
             padding-bottom: 50px;
+            line-height: 1.6;
         }
         
-        /* الترويسة */
+        /* تحسينات الترويسة */
         header {
             background: rgba(0, 0, 0, 0.7);
             padding: 25px;
@@ -59,6 +63,10 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
         
         header p {
@@ -66,10 +74,9 @@
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto;
-            line-height: 1.6;
         }
         
-        /* شريط البحث */
+        /* تحسينات شريط البحث */
         .search-container {
             max-width: 700px;
             margin: 30px auto;
@@ -84,6 +91,12 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .search-box:focus-within {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
         }
         
         .search-box input {
@@ -96,6 +109,10 @@
             padding: 5px 15px;
         }
         
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
         .search-box button {
             background: var(--secondary-color);
             border: none;
@@ -103,8 +120,11 @@
             padding: 10px 25px;
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .search-box button:hover {
@@ -112,7 +132,7 @@
             box-shadow: 0 6px 15px rgba(26, 188, 156, 0.5);
         }
         
-        /* الفلاتر */
+        /* تحسينات الفلاتر */
         .filters {
             display: flex;
             justify-content: center;
@@ -130,9 +150,12 @@
             padding: 10px 20px;
             border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .filter-btn.active, .filter-btn:hover {
@@ -141,9 +164,9 @@
             box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4);
         }
         
-        /* قسم التطبيقات */
+        /* تحسينات قسم التطبيقات */
         .apps-section {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -169,116 +192,248 @@
             border-radius: 2px;
         }
         
-        /* شبكة التطبيقات */
+        /* تحسينات شبكة التطبيقات */
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 35px;
         }
         
-        /* بطاقة التطبيق */
+        /* تصميم جديد محسن لبطاقة التطبيق */
         .app-card {
-            background: var(--card-bg);
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: var(--card-radius);
             overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             position: relative;
-            box-shadow: var(--shadow);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #da1b60, #1abc9c);
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .app-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+            transform: translateY(-15px) scale(1.02) rotateX(2deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .app-card:hover::before {
+            opacity: 1;
         }
         
         .app-image {
-            height: 220px;
+            height: 200px;
             overflow: hidden;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.25);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .app-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            z-index: 1;
+            pointer-events: none;
         }
         
         .app-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s ease;
+            max-height: 140px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 18px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
         }
         
         .app-card:hover .app-image img {
-            transform: scale(1.15);
+            transform: scale(1.18) translateY(-5px);
         }
         
         .app-badge {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--secondary-color);
-            padding: 7px 18px;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+            padding: 8px 20px;
             border-radius: 30px;
             font-size: 0.9rem;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(26, 188, 156, 0.4);
+            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.5);
+            z-index: 3;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .app-content {
-            padding: 25px;
+            padding: var(--card-padding);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
         
         .app-title {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
             color: var(--text-light);
-            font-weight: 700;
+            font-weight: 800;
+            text-align: center;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .app-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 30%;
+            width: 40%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
         }
         
         .app-description {
             color: var(--text-dimmed);
-            font-size: 1rem;
+            font-size: 1.05rem;
             margin-bottom: 20px;
-            line-height: 1.6;
-            height: 75px;
+            line-height: 1.7;
+            height: 85px;
             overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            text-align: center;
+            padding: 0 10px;
         }
         
         .app-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            color: #c0c0c0;
+            padding: 0 10px;
+        }
+        
+        .app-meta span {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            font-size: 1rem;
-            color: #b0b0b0;
+            gap: 10px;
+            justify-content: center;
+            padding: 8px 0;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+        
+        .app-meta span:hover {
+            background: rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
         }
         
         .app-rating {
             color: #ffc107;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            justify-content: center;
+            grid-column: span 2;
+            margin: 12px 0;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
         
         .download-btn {
             display: block;
             width: 100%;
-            padding: 15px;
-            background: var(--secondary-color);
+            padding: 16px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
+            border-radius: 14px;
+            font-size: 1.15rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
-            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4);
+            box-shadow: 0 7px 20px rgba(26, 188, 156, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
         }
         
         .download-btn:hover {
-            background: var(--secondary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(26, 188, 156, 0.6);
+            background: linear-gradient(135deg, var(--secondary-dark), #13967a);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(26, 188, 156, 0.6);
         }
         
-        /* التذييل */
+        .download-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* تأثيرات إضافية للبطاقة */
+        .app-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .app-card:hover::after {
+            opacity: 1;
+        }
+        
+        /* تحسينات التذييل */
         footer {
             text-align: center;
             margin-top: 70px;
@@ -290,11 +445,26 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* تصميم متجاوب */
+        /* تحسينات التصميم المتجاوب */
+        @media (max-width: 1200px) {
+            .apps-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 30px;
+            }
+        }
+        
         @media (max-width: 992px) {
             .apps-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
                 gap: 25px;
+            }
+            
+            .app-image {
+                height: 180px;
+            }
+            
+            .app-image img {
+                max-height: 130px;
             }
         }
         
@@ -310,11 +480,22 @@
             .section-title {
                 font-size: 1.9rem;
             }
+            
+            .app-description {
+                height: auto;
+                -webkit-line-clamp: unset;
+            }
+            
+            .apps-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
         }
         
         @media (max-width: 576px) {
             .apps-grid {
                 grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
             }
             
             .search-box {
@@ -330,7 +511,11 @@
             }
             
             .app-image {
-                height: 200px;
+                height: 170px;
+            }
+            
+            .app-image img {
+                max-height: 120px;
             }
             
             header {
@@ -339,6 +524,26 @@
             
             header h1 {
                 font-size: 1.8rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .app-meta {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .app-rating {
+                grid-column: span 1;
             }
         }
         
@@ -353,7 +558,7 @@
             animation: pulse 1.5s infinite;
         }
         
-        /* إشعارات */
+        /* تحسينات الإشعارات */
         .notification {
             position: fixed;
             top: 20px;
@@ -366,20 +571,29 @@
             transform: translateX(150%);
             transition: transform 0.5s ease;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .notification.show {
             transform: translateX(0);
         }
         
-        /* أنيميشن للبطاقات */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* تحسينات أنيميشن للبطاقات */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
         }
         
         .app-card {
-            animation: fadeIn 0.6s ease forwards;
+            animation: fadeInUp 0.7s ease forwards;
             opacity: 0;
         }
         
@@ -389,8 +603,21 @@
         .app-card:nth-child(4) { animation-delay: 0.4s; }
         .app-card:nth-child(5) { animation-delay: 0.5s; }
         .app-card:nth-child(6) { animation-delay: 0.6s; }
+        .app-card:nth-child(7) { animation-delay: 0.7s; }
+        .app-card:nth-child(8) { animation-delay: 0.8s; }
         
-        /* نافذة التحميل */
+        /* تأثيرات الاهتزاز الخفيف عند التحميل */
+        @keyframes subtleShake {
+            0%, 100% { transform: translateX(0) rotate(0); }
+            25% { transform: translateX(-2px) rotate(-0.5deg); }
+            75% { transform: translateX(2px) rotate(0.5deg); }
+        }
+        
+        .app-card:hover {
+            animation: fadeInUp 0.7s ease, subtleShake 0.5s ease 0.7s;
+        }
+        
+        /* تحسينات نافذة التحميل */
         .download-modal {
             position: fixed;
             top: 0;
@@ -480,7 +707,10 @@
             border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .download-cancel {
@@ -501,11 +731,12 @@
             background: var(--secondary-dark);
         }
 
-        /* حالة التحميل */
+        /* تحسينات حالة التحميل */
         .loading {
             text-align: center;
             padding: 50px;
             font-size: 1.2rem;
+            grid-column: 1 / -1;
         }
 
         .loading-spinner {
@@ -522,12 +753,80 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* تأثيرات إضافية للاحترافية */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+            min-height: 20px;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-5px);
+        }
+        
+        /* تحسينات للوصولية */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* تحسينات للأداء */
+        .app-image img {
+            will-change: transform;
+        }
+        
+        /* تحسينات للتركيز على العناصر */
+        button:focus,
+        input:focus {
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1><i class="fas fa-mobile-alt"></i> متجر التطبيقات المتطور</h1>
-        <p>اكتشف وتصفح أفضل التطبيقات وتحميلها بأسلوب حديث ومتطور</p>
     </header>
     
     <div class="search-container">
@@ -538,18 +837,19 @@
     </div>
     
     <div class="filters">
-        <button class="filter-btn active" data-filter="all">الكل</button>
-        <button class="filter-btn" data-filter="social">التواصل الاجتماعي</button>
-        <button class="filter-btn" data-filter="entertainment">ترفيه</button>
-        <button class="filter-btn" data-filter="education">تعليم</button>
-        <button class="filter-btn" data-filter="productivity">إنتاجية</button>
-        <button class="filter-btn" data-filter="tools">أدوات</button>
+        <button class="filter-btn active" data-filter="all"><i class="fas fa-th"></i> الكل</button>
+        <button class="filter-btn" data-filter="social"><i class="fas fa-comments"></i> التواصل الاجتماعي</button>
+        <button class="filter-btn" data-filter="entertainment"><i class="fas fa-gamepad"></i> ترفيه</button>
+        <button class="filter-btn" data-filter="education"><i class="fas fa-graduation-cap"></i> تعليم</button>
+        <button class="filter-btn" data-filter="productivity"><i class="fas fa-briefcase"></i> إنتاجية</button>
+        <button class="filter-btn" data-filter="tools"><i class="fas fa-tools"></i> أدوات</button>
     </div>
     
     <section class="apps-section">
         <h2 class="section-title">التطبيقات المتوفرة</h2>
         
         <div class="apps-grid" id="apps-container">
+            <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
             <div class="loading">
                 <div class="loading-spinner"></div>
                 <p>جاري تحميل التطبيقات...</p>
@@ -561,7 +861,10 @@
         <p>© 2023 متجر التطبيقات المتطور. جميع الحقوق محفوظة.</p>
     </footer>
 
-    <div class="notification" id="notification">جاري تحميل التطبيق...</div>
+    <div class="notification" id="notification">
+        <i class="fas fa-info-circle"></i>
+        <span id="notification-text">جاري تحميل التطبيق...</span>
+    </div>
 
     <div class="download-modal" id="downloadModal">
         <div class="download-content">
@@ -577,11 +880,15 @@
                 <span id="downloadSpeed">0 KB/ثانية</span>
             </div>
             <div class="download-actions">
-                <button class="download-cancel" id="downloadCancel">إلغاء</button>
-                <button class="download-open" id="downloadOpen" style="display: none;">فتح التطبيق</button>
+                <button class="download-cancel" id="downloadCancel"><i class="fas fa-times"></i> إلغاء</button>
+                <button class="download-open" id="downloadOpen" style="display: none;"><i class="fas fa-external-link-alt"></i> فتح التطبيق</button>
             </div>
         </div>
     </div>
+    
+    <button class="scroll-top" id="scrollTop" aria-label="الانتقال إلى الأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script>
         // عناصر DOM
@@ -590,6 +897,7 @@
         const searchBtn = document.getElementById('searchBtn');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
         const downloadModal = document.getElementById('downloadModal');
         const downloadText = document.getElementById('downloadText');
         const downloadProgress = document.getElementById('downloadProgress');
@@ -597,10 +905,111 @@
         const downloadSpeed = document.getElementById('downloadSpeed');
         const downloadCancel = document.getElementById('downloadCancel');
         const downloadOpen = document.getElementById('downloadOpen');
+        const scrollTopBtn = document.getElementById('scrollTop');
 
         // رابط مستودع GitHub الخاص بك
         const githubRepo = 'osama2020almorisi/A';
         const baseUrl = `https://raw.githubusercontent.com/${githubRepo}/main/`;
+
+        // بيانات التطبيقات الافتراضية (لأغراض العرض)
+        const defaultApps = [
+            {
+                id: 1,
+                name: "تطبيق التواصل الاجتماعي",
+                description: "تطبيق للتواصل مع الأصدقاء والعائلة ومشاركة اللحظات المميزة",
+                category: "social",
+                size: "85 ميجابايت",
+                version: "2.3.4",
+                downloads: "10M+",
+                rating: 4,
+                image: "social-app.png",
+                file: "social-app.apk"
+            },
+            {
+                id: 2,
+                name: "تطبيق الموسيقى",
+                description: "استمع إلى الملايين من الأغاني وإنشاء قوائم التشغيل الخاصة بك",
+                category: "entertainment",
+                size: "65 ميجابايت",
+                version: "1.5.2",
+                downloads: "5M+",
+                rating: 5,
+                image: "music-app.png",
+                file: "music-app.apk"
+            },
+            {
+                id: 3,
+                name: "تطبيق التعلم",
+                description: "تعلم مهارات جديدة من خلال دورات تفاعلية واحترافية",
+                category: "education",
+                size: "72 ميجابايت",
+                version: "3.1.0",
+                downloads: "2M+",
+                rating: 4,
+                image: "education-app.png",
+                file: "education-app.apk"
+            },
+            {
+                id: 4,
+                name: "تطبيق الإنتاجية",
+                description: "نظم مهامك وزد من إنتاجيتك مع هذا التطبيق المميز",
+                category: "productivity",
+                size: "45 ميجابايت",
+                version: "4.2.1",
+                downloads: "8M+",
+                rating: 5,
+                image: "productivity-app.png",
+                file: "productivity-app.apk"
+            },
+            {
+                id: 5,
+                name: "تطبيق الأدوات",
+                description: "مجموعة من الأدوات المفيدة لحياتك اليومية",
+                category: "tools",
+                size: "38 ميجابايت",
+                version: "1.0.5",
+                downloads: "3M+",
+                rating: 3,
+                image: "tools-app.png",
+                file: "tools-app.apk"
+            },
+            {
+                id: 6,
+                name: "تطبيق اللياقة",
+                description: "تابع تمارينك الرياضية وحافظ على صحتك مع هذا التطبيق",
+                category: "health",
+                size: "90 ميجابايت",
+                version: "2.7.3",
+                downloads: "7M+",
+                rating: 4,
+                image: "fitness-app.png",
+                file: "fitness-app.apk"
+            },
+            {
+                id: 7,
+                name: "تطبيق التسوق",
+                description: "تسوق أحدث المنتجات والعروض الحصرية من متجرنا",
+                category: "shopping",
+                size: "78 ميجابايت",
+                version: "3.5.1",
+                downloads: "12M+",
+                rating: 5,
+                image: "shopping-app.png",
+                file: "shopping-app.apk"
+            },
+            {
+                id: 8,
+                name: "تطبيق السفر",
+                description: "احجز رحلاتك وفنادقك بسهولة وأفضل الأسعار",
+                category: "travel",
+                size: "95 ميجابايت",
+                version: "2.9.0",
+                downloads: "4M+",
+                rating: 4,
+                image: "travel-app.png",
+                file: "travel-app.apk"
+            }
+        ];
 
         // دالة لجلب بيانات التطبيقات من GitHub
         async function fetchAppsData() {
@@ -628,11 +1037,16 @@
                     }
                 }
                 
+                // إذا لم توجد تطبيقات، نستخدم البيانات الافتراضية
+                if (appsData.length === 0) {
+                    return defaultApps;
+                }
+                
                 return appsData;
             } catch (error) {
                 console.error('Error fetching apps data:', error);
-                showNotification('فشل في تحميل بيانات التطبيقات', 'error');
-                return [];
+                showNotification('فشل في تحميل بيانات التطبيقات، جاري استخدام بيانات افتراضية', 'error');
+                return defaultApps;
             }
         }
 
@@ -652,26 +1066,25 @@
             
             apps.forEach((app, index) => {
                 const ratingStars = '★'.repeat(app.rating) + '☆'.repeat(5 - app.rating);
-                const imageUrl = baseUrl + app.image;
+                // استخدام صور افتراضية إذا لم تكن الصورة متوفرة
+                const imageUrl = app.image ? baseUrl + app.image : `https://via.placeholder.com/150x150/1a2a6c/ffffff?text=${encodeURIComponent(app.name)}`;
                 
                 const appCard = document.createElement('div');
                 appCard.className = 'app-card';
                 appCard.style.animationDelay = `${index * 0.1}s`;
                 appCard.innerHTML = `
                     <div class="app-image">
-                        <img src="${imageUrl}" alt="${app.name}" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+التطبيق'">
+                        <img src="${imageUrl}" alt="${app.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/150x150/1a2a6c/ffffff?text=${encodeURIComponent(app.name)}'">
                         <div class="app-badge">${getCategoryName(app.category)}</div>
                     </div>
                     <div class="app-content">
                         <h3 class="app-title">${app.name}</h3>
                         <p class="app-description">${app.description}</p>
                         <div class="app-meta">
-                            <span class="app-size">${app.size}</span>
+                            <span class="app-size"><i class="fas fa-database"></i> ${app.size}</span>
+                            <span class="app-version"><i class="fas fa-code-branch"></i> ${app.version}</span>
+                            <span class="app-downloads"><i class="fas fa-download"></i> ${app.downloads}</span>
                             <span class="app-rating">${ratingStars}</span>
-                        </div>
-                        <div class="app-meta">
-                            <span class="app-version">الإصدار: ${app.version}</span>
-                            <span class="app-downloads">${app.downloads}</span>
                         </div>
                         <button class="download-btn" data-id="${app.id}" data-file="${app.file}" data-name="${app.name}">
                             <i class="fas fa-download"></i> تحميل التطبيق
@@ -784,14 +1197,21 @@
 
         // دالة لعرض الإشعارات
         function showNotification(message, type = 'info') {
-            notification.textContent = message;
+            notificationText.textContent = message;
             notification.className = 'notification';
             notification.classList.add('show');
             
+            // تغيير الأيقونة بناءً على نوع الإشعار
+            const icon = notification.querySelector('i');
             if (type === 'error') {
                 notification.style.background = 'var(--danger-color)';
+                icon.className = 'fas fa-exclamation-circle';
             } else if (type === 'success') {
                 notification.style.background = 'var(--secondary-color)';
+                icon.className = 'fas fa-check-circle';
+            } else {
+                notification.style.background = 'var(--info-color)';
+                icon.className = 'fas fa-info-circle';
             }
             
             setTimeout(() => {
@@ -850,8 +1270,31 @@
             });
         }
 
+        // إعداد زر الانتقال إلى الأعلى
+        function setupScrollTop() {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
         // تهيئة الصفحة عند التحميل
         document.addEventListener('DOMContentLoaded', async function() {
+            // إعداد عناصر التحكم
+            setupSearch();
+            setupFilters();
+            setupScrollTop();
+            
             // جلب بيانات التطبيقات من GitHub
             const appsData = await fetchAppsData();
             
@@ -860,10 +1303,6 @@
             
             // عرض التطبيقات
             renderApps(appsData);
-            
-            // إعداد البحث والفلاتر
-            setupSearch();
-            setupFilters();
             
             if (appsData.length > 0) {
                 showNotification(`تم تحميل ${appsData.length} تطبيق بنجاح`, 'success');
