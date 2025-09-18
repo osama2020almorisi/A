@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر التطبيقات - عرض وتحميل التطبيقات</title>
+    <title>متجر أسامة المريسي - عرض وتحميل التطبيقات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
@@ -12,6 +12,8 @@
             --primary-light: #3d566e;
             --secondary-color: #1abc9c;
             --secondary-dark: #16a085;
+            --accent-color: #fdbb2d;
+            --accent-gradient: linear-gradient(135deg, #ff8a00, #da1b60);
             --danger-color: #e74c3c;
             --warning-color: #f39c12;
             --info-color: #3498db;
@@ -25,8 +27,9 @@
             --shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             --gradient-bg: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             --transition: all 0.3s ease;
-            --card-radius: 24px;
-            --card-padding: 25px;
+            --card-radius: 20px;
+            --card-padding: 20px;
+            --header-height: 70px;
         }
         
         * {
@@ -38,6 +41,7 @@
         
         body {
             background: var(--gradient-bg);
+            background-attachment: fixed;
             color: var(--text-light);
             min-height: 100vh;
             padding-bottom: 50px;
@@ -47,18 +51,22 @@
         /* تحسينات الترويسة */
         header {
             background: rgba(0, 0, 0, 0.7);
-            padding: 25px;
+            padding: 15px 25px;
             text-align: center;
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
+            height: var(--header-height);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 0;
             background: linear-gradient(to right, #ff8a00, #da1b60);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -66,20 +74,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-        }
-        
-        header p {
-            color: var(--text-dimmed);
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
+            gap: 10px;
         }
         
         /* تحسينات شريط البحث */
         .search-container {
             max-width: 700px;
-            margin: 30px auto;
+            margin: 25px auto;
             padding: 0 20px;
         }
         
@@ -87,7 +88,7 @@
             display: flex;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 50px;
-            padding: 12px 20px;
+            padding: 10px 20px;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: var(--shadow);
@@ -105,7 +106,7 @@
             background: transparent;
             outline: none;
             color: var(--text-light);
-            font-size: 1.1rem;
+            font-size: 1rem;
             padding: 5px 15px;
         }
         
@@ -117,7 +118,7 @@
             background: var(--secondary-color);
             border: none;
             border-radius: 30px;
-            padding: 10px 25px;
+            padding: 8px 20px;
             color: white;
             cursor: pointer;
             transition: var(--transition);
@@ -125,6 +126,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.9rem;
         }
         
         .search-box button:hover {
@@ -137,17 +139,17 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin: 20px auto;
+            gap: 10px;
+            margin: 15px auto;
             max-width: 1000px;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
         .filter-btn {
             background: rgba(255, 255, 255, 0.1);
             border: none;
             color: var(--text-light);
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 30px;
             cursor: pointer;
             transition: var(--transition);
@@ -155,26 +157,27 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            font-size: 0.9rem;
         }
         
         .filter-btn.active, .filter-btn:hover {
             background: var(--secondary-color);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4);
         }
         
         /* تحسينات قسم التطبيقات */
         .apps-section {
             max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 30px auto;
+            padding: 0 15px;
         }
         
         .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.2);
             text-align: center;
             position: relative;
@@ -186,7 +189,7 @@
             bottom: -2px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
+            width: 80px;
             height: 4px;
             background: var(--secondary-color);
             border-radius: 2px;
@@ -195,355 +198,330 @@
         /* تحسينات شبكة التطبيقات */
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
         }
         
-        /* تصميم جديد محسن لبطاقة التطبيق */
+        /* تصميم جديد للبطاقات مع الصورة على اليمين */
         .app-card {
             background: rgba(255, 255, 255, 0.08);
             border-radius: var(--card-radius);
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             position: relative;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        .app-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #ff8a00, #da1b60, #1abc9c);
-            z-index: 2;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
         
         .app-card:hover {
-            transform: translateY(-15px) scale(1.02) rotateX(2deg);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             background: rgba(255, 255, 255, 0.12);
         }
         
-        .app-card:hover::before {
-            opacity: 1;
+        .app-card-content {
+            display: flex;
+            padding: 15px;
+            gap: 15px;
         }
         
         .app-image {
-            height: 200px;
+            width: 100px;
+            height: 100px;
             overflow: hidden;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 30px;
             background: rgba(0, 0, 0, 0.25);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .app-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60%;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-            z-index: 1;
-            pointer-events: none;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
         }
         
         .app-image img {
-            max-height: 140px;
-            width: auto;
+            max-height: 90%;
+            max-width: 90%;
             object-fit: contain;
-            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-radius: 18px;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
-            position: relative;
-            z-index: 2;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+            transition: all 0.5s ease;
+            border-radius: 10px;
         }
         
         .app-card:hover .app-image img {
-            transform: scale(1.18) translateY(-5px);
+            transform: scale(1.1);
+        }
+        
+        .app-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .app-badge {
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 12px;
+            left: 12px;
             background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.5);
+            box-shadow: 0 4px 10px rgba(26, 188, 156, 0.4);
             z-index: 3;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .app-content {
-            padding: var(--card-padding);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        
         .app-title {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
             color: var(--text-light);
-            font-weight: 800;
-            text-align: center;
-            position: relative;
-            padding-bottom: 12px;
-        }
-        
-        .app-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 30%;
-            width: 40%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+            font-weight: 700;
         }
         
         .app-description {
             color: var(--text-dimmed);
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-            line-height: 1.7;
-            height: 85px;
-            overflow: hidden;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            line-height: 1.5;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            text-align: center;
-            padding: 0 10px;
+            overflow: hidden;
         }
         
         .app-meta {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-            font-size: 1.05rem;
+            gap: 8px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
             color: #c0c0c0;
-            padding: 0 10px;
         }
         
         .app-meta span {
             display: flex;
             align-items: center;
-            gap: 10px;
-            justify-content: center;
-            padding: 8px 0;
-            border-radius: 10px;
+            gap: 6px;
+            padding: 5px;
+            border-radius: 6px;
             background: rgba(0, 0, 0, 0.2);
             transition: var(--transition);
         }
         
         .app-meta span:hover {
             background: rgba(0, 0, 0, 0.3);
-            transform: translateY(-2px);
         }
         
         .app-rating {
             color: #ffc107;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             justify-content: center;
             grid-column: span 2;
-            margin: 12px 0;
-            letter-spacing: 3px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            margin: 8px 0;
+            letter-spacing: 2px;
         }
         
         .download-btn {
             display: block;
             width: 100%;
-            padding: 16px;
+            padding: 10px;
             background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
             color: white;
             border: none;
-            border-radius: 14px;
-            font-size: 1.15rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             text-align: center;
-            box-shadow: 0 7px 20px rgba(26, 188, 156, 0.4);
+            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
             margin-top: auto;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .download-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
         }
         
         .download-btn:hover {
             background: linear-gradient(135deg, var(--secondary-dark), #13967a);
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 12px 25px rgba(26, 188, 156, 0.6);
-        }
-        
-        .download-btn:hover::before {
-            left: 100%;
-        }
-        
-        /* تأثيرات إضافية للبطاقة */
-        .app-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-        
-        .app-card:hover::after {
-            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 188, 156, 0.6);
         }
         
         /* تحسينات التذييل */
         footer {
             text-align: center;
-            margin-top: 70px;
-            padding: 30px;
+            margin-top: 50px;
+            padding: 25px;
             color: var(--text-dimmed);
-            font-size: 1rem;
+            font-size: 0.9rem;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* تحسينات التصميم المتجاوب */
-        @media (max-width: 1200px) {
-            .apps-grid {
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-                gap: 30px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .apps-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 25px;
-            }
-            
-            .app-image {
-                height: 180px;
-            }
-            
-            .app-image img {
-                max-height: 130px;
-            }
-        }
-        
+        /* تحسينات التصميم المتجاوب للهواتف */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
+            :root {
+                --card-padding: 15px;
+                --card-radius: 15px;
             }
             
-            header p {
-                font-size: 1.1rem;
+            header h1 {
+                font-size: 1.5rem;
             }
             
             .section-title {
-                font-size: 1.9rem;
-            }
-            
-            .app-description {
-                height: auto;
-                -webkit-line-clamp: unset;
+                font-size: 1.5rem;
             }
             
             .apps-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+            }
+            
+            .app-card-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .app-image {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+            }
+            
+            .app-title {
+                font-size: 1.2rem;
+            }
+            
+            .app-description {
+                font-size: 0.85rem;
+            }
+            
+            .app-meta {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            
+            .app-rating {
+                grid-column: span 1;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                border-radius: 15px;
+                padding: 12px;
+            }
+            
+            .search-box input {
+                margin-bottom: 10px;
+                text-align: center;
+                padding: 8px;
+            }
+            
+            .filters {
+                gap: 8px;
+            }
+            
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
         }
         
         @media (max-width: 576px) {
             .apps-grid {
                 grid-template-columns: 1fr;
-                max-width: 400px;
+                max-width: 350px;
                 margin: 0 auto;
             }
             
-            .search-box {
-                flex-direction: column;
-                border-radius: 20px;
-                padding: 15px;
-            }
-            
-            .search-box input {
-                margin-bottom: 15px;
-                text-align: center;
-                padding: 10px;
-            }
-            
-            .app-image {
-                height: 170px;
-            }
-            
-            .app-image img {
-                max-height: 120px;
-            }
-            
             header {
-                padding: 20px 15px;
+                padding: 12px 15px;
             }
             
             header h1 {
-                font-size: 1.8rem;
-                flex-direction: column;
-                gap: 10px;
+                font-size: 1.3rem;
+            }
+            
+            .search-container {
+                margin: 15px auto;
+            }
+            
+            .app-image {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .app-content {
+                padding: 12px;
+            }
+            
+            .app-title {
+                font-size: 1.1rem;
+            }
+            
+            .app-description {
+                font-size: 0.8rem;
+                -webkit-line-clamp: unset;
+            }
+            
+            .app-meta span {
+                font-size: 0.8rem;
+            }
+            
+            .download-btn {
+                padding: 8px;
+                font-size: 0.85rem;
             }
             
             .filters {
-                gap: 10px;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 5px;
+                margin: 10px auto;
             }
             
-            .filter-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
+            .filters::-webkit-scrollbar {
+                height: 4px;
             }
             
-            .app-meta {
+            .filters::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 10px;
+            }
+        }
+        
+        @media (max-width: 380px) {
+            .apps-grid {
                 grid-template-columns: 1fr;
-                gap: 10px;
             }
             
-            .app-rating {
-                grid-column: span 1;
+            .app-card {
+                border-radius: 12px;
+            }
+            
+            .app-image {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .app-title {
+                font-size: 1rem;
+            }
+            
+            .app-description {
+                font-size: 0.8rem;
+            }
+            
+            .search-box button {
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
         }
         
@@ -561,19 +539,21 @@
         /* تحسينات الإشعارات */
         .notification {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
+            top: 15px;
+            right: 15px;
+            padding: 12px 20px;
             background: var(--secondary-color);
             color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             box-shadow: var(--shadow);
             transform: translateX(150%);
-            transition: transform 0.5s ease;
+            transition: transform 0.4s ease;
             z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-size: 0.9rem;
+            max-width: 300px;
         }
         
         .notification.show {
@@ -584,7 +564,7 @@
         @keyframes fadeInUp {
             from { 
                 opacity: 0; 
-                transform: translateY(30px) scale(0.95); 
+                transform: translateY(20px) scale(0.95); 
             }
             to { 
                 opacity: 1; 
@@ -593,7 +573,7 @@
         }
         
         .app-card {
-            animation: fadeInUp 0.7s ease forwards;
+            animation: fadeInUp 0.5s ease forwards;
             opacity: 0;
         }
         
@@ -606,18 +586,7 @@
         .app-card:nth-child(7) { animation-delay: 0.7s; }
         .app-card:nth-child(8) { animation-delay: 0.8s; }
         
-        /* تأثيرات الاهتزاز الخفيف عند التحميل */
-        @keyframes subtleShake {
-            0%, 100% { transform: translateX(0) rotate(0); }
-            25% { transform: translateX(-2px) rotate(-0.5deg); }
-            75% { transform: translateX(2px) rotate(0.5deg); }
-        }
-        
-        .app-card:hover {
-            animation: fadeInUp 0.7s ease, subtleShake 0.5s ease 0.7s;
-        }
-        
-        /* تحسينات نافذة التحميل */
+        /* نافذة التحميل المعدلة */
         .download-modal {
             position: fixed;
             top: 0;
@@ -643,15 +612,15 @@
         .download-content {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
+            padding: 25px;
+            border-radius: 15px;
             text-align: center;
-            max-width: 500px;
+            max-width: 400px;
             width: 90%;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            transform: translateY(-50px);
-            transition: transform 0.5s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(-40px);
+            transition: transform 0.4s ease;
         }
         
         .download-modal.active .download-content {
@@ -659,24 +628,24 @@
         }
         
         .download-icon {
-            font-size: 4rem;
+            font-size: 3rem;
             color: var(--secondary-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .download-text {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
             color: var(--text-light);
         }
         
         .download-progress {
             width: 100%;
-            height: 10px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
+            border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .download-progress-bar {
@@ -684,33 +653,34 @@
             background: var(--secondary-color);
             width: 0%;
             transition: width 0.3s ease;
-            border-radius: 5px;
+            border-radius: 4px;
         }
         
         .download-info {
             display: flex;
             justify-content: space-between;
             color: var(--text-dimmed);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
         }
         
         .download-actions {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
         }
         
         .download-actions button {
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: none;
-            border-radius: 30px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            font-size: 0.9rem;
         }
         
         .download-cancel {
@@ -734,19 +704,19 @@
         /* تحسينات حالة التحميل */
         .loading {
             text-align: center;
-            padding: 50px;
-            font-size: 1.2rem;
+            padding: 40px 20px;
+            font-size: 1.1rem;
             grid-column: 1 / -1;
         }
 
         .loading-spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border-top: 4px solid var(--secondary-color);
-            width: 40px;
-            height: 40px;
+            border-top: 3px solid var(--secondary-color);
+            width: 35px;
+            height: 35px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
         }
 
         @keyframes spin {
@@ -754,13 +724,13 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* تأثيرات إضافية للاحترافية */
+        /* تأثيرات الهيكل العظمي للتحميل */
         .skeleton {
             background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
-            border-radius: 8px;
-            min-height: 20px;
+            border-radius: 6px;
+            min-height: 16px;
         }
         
         @keyframes loading {
@@ -768,12 +738,13 @@
             100% { background-position: -200% 0; }
         }
         
+        /* زر الانتقال للأعلى */
         .scroll-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
             background: var(--secondary-color);
             color: white;
             border-radius: 50%;
@@ -785,7 +756,8 @@
             opacity: 0;
             visibility: hidden;
             z-index: 99;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-size: 1.1rem;
         }
         
         .scroll-top.visible {
@@ -795,20 +767,7 @@
         
         .scroll-top:hover {
             background: var(--secondary-dark);
-            transform: translateY(-5px);
-        }
-        
-        /* تحسينات للوصولية */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+            transform: translateY(-3px);
         }
         
         /* تحسينات للأداء */
@@ -826,7 +785,7 @@
 </head>
 <body>
     <header>
-        <h1><i class="fas fa-mobile-alt"></i> متجر التطبيقات المتطور</h1>
+        <h1><i class="fas fa-mobile-alt"></i> متجر أسامة المريسي</h1>
     </header>
     
     <div class="search-container">
@@ -838,7 +797,7 @@
     
     <div class="filters">
         <button class="filter-btn active" data-filter="all"><i class="fas fa-th"></i> الكل</button>
-        <button class="filter-btn" data-filter="social"><i class="fas fa-comments"></i> التواصل الاجتماعي</button>
+        <button class="filter-btn" data-filter="social"><i class="fas fa-comments"></i> التواصل</button>
         <button class="filter-btn" data-filter="entertainment"><i class="fas fa-gamepad"></i> ترفيه</button>
         <button class="filter-btn" data-filter="education"><i class="fas fa-graduation-cap"></i> تعليم</button>
         <button class="filter-btn" data-filter="productivity"><i class="fas fa-briefcase"></i> إنتاجية</button>
@@ -858,7 +817,7 @@
     </section>
     
     <footer>
-        <p>© 2023 متجر التطبيقات المتطور. جميع الحقوق محفوظة.</p>
+        <p>© 2023 متجر أسامة المريسي. جميع الحقوق محفوظة.</p>
     </footer>
 
     <div class="notification" id="notification">
@@ -1056,9 +1015,9 @@
             
             if (apps.length === 0) {
                 appsContainer.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
-                        <i class="fas fa-box-open" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
-                        <p style="font-size: 1.2rem;">لا توجد تطبيقات متاحة حالياً</p>
+                    <div style="grid-column: 1/-1; text-align: center; padding: 30px;">
+                        <i class="fas fa-box-open" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                        <p style="font-size: 1.1rem;">لا توجد تطبيقات متاحة حالياً</p>
                     </div>
                 `;
                 return;
@@ -1073,23 +1032,25 @@
                 appCard.className = 'app-card';
                 appCard.style.animationDelay = `${index * 0.1}s`;
                 appCard.innerHTML = `
-                    <div class="app-image">
-                        <img src="${imageUrl}" alt="${app.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/150x150/1a2a6c/ffffff?text=${encodeURIComponent(app.name)}'">
-                        <div class="app-badge">${getCategoryName(app.category)}</div>
-                    </div>
-                    <div class="app-content">
-                        <h3 class="app-title">${app.name}</h3>
-                        <p class="app-description">${app.description}</p>
-                        <div class="app-meta">
-                            <span class="app-size"><i class="fas fa-database"></i> ${app.size}</span>
-                            <span class="app-version"><i class="fas fa-code-branch"></i> ${app.version}</span>
-                            <span class="app-downloads"><i class="fas fa-download"></i> ${app.downloads}</span>
-                            <span class="app-rating">${ratingStars}</span>
+                    <div class="app-badge">${getCategoryName(app.category)}</div>
+                    <div class="app-card-content">
+                        <div class="app-image">
+                            <img src="${imageUrl}" alt="${app.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/150x150/1a2a6c/ffffff?text=${encodeURIComponent(app.name)}'">
                         </div>
-                        <button class="download-btn" data-id="${app.id}" data-file="${app.file}" data-name="${app.name}">
-                            <i class="fas fa-download"></i> تحميل التطبيق
-                        </button>
+                        <div class="app-info">
+                            <h3 class="app-title">${app.name}</h3>
+                            <p class="app-description">${app.description}</p>
+                            <div class="app-meta">
+                                <span class="app-size"><i class="fas fa-database"></i> ${app.size}</span>
+                                <span class="app-version"><i class="fas fa-code-branch"></i> ${app.version}</span>
+                                <span class="app-downloads"><i class="fas fa-download"></i> ${app.downloads}</span>
+                                <span class="app-rating">${ratingStars}</span>
+                            </div>
+                        </div>
                     </div>
+                    <button class="download-btn" data-id="${app.id}" data-file="${app.file}" data-name="${app.name}">
+                        <i class="fas fa-download"></i> تحميل التطبيق
+                    </button>
                 `;
                 
                 appsContainer.appendChild(appCard);
